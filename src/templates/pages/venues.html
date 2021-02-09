@@ -1,0 +1,47 @@
+{% extends 'layouts/main.html' %} {% block title %}Fyyur | Venues{% endblock %}
+{% block content %} {% for area in areas %}
+
+<ul class="items">
+  <h3>{{ area.city }}, {{ area.state }}</h3>
+  {% for venue in area.venues %}
+  <li>
+    <div>
+      <a href="/venues/{{ venue.id }}">
+        <i class="fas fa-music"></i>
+        {{ venue.name }}
+      </a>
+
+      <a class="editIcon" href="/venues/{{ venue.id }}/edit">
+        <i class="pointer fa fa-edit"> </i>
+      </a>
+
+      <i
+        class="pointer deleteIcon fa fa-trash"
+        data-id="{{venue.id}}"
+        data-name="{{venue.name}}"
+      ></i>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+{% endfor %}
+<script>
+  const deleteIcons = document.querySelectorAll(".deleteIcon");
+  for (btn of deleteIcons) {
+    btn.onclick = function () {
+      if (confirm(`Delete Venue:${btn.dataset.name}`)) {
+        fetch(`/venues/${btn.dataset.id}`, {
+          method: "Delete",
+        })
+          .then((res) => {
+            if (res.redirected) window.location.href = res.url;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
+  }
+</script>
+{% endblock %}

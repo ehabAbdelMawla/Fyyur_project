@@ -1,0 +1,41 @@
+{% extends 'layouts/main.html' %} {% block title %}Fyyur | Artists{% endblock %}
+{% block content %}
+<ul class="items">
+  {% for artist in artists %}
+  <li>
+    <div>
+      <a href="/artists/{{ artist.id }}">
+        <i class="fas fa-users"></i>{{ artist.name }}
+      </a>
+      <a class="editIcon" href="/artists/{{ artist.id }}/edit">
+        <i class="pointer fa fa-edit"> </i>
+      </a>
+      <i
+        class="pointer deleteIcon fa fa-trash"
+        data-id="{{artist.id}}"
+        data-name="{{artist.name}}"
+      ></i>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+<script>
+  const deleteIcons = document.querySelectorAll(".deleteIcon");
+  for (btn of deleteIcons) {
+    btn.onclick = function () {
+      if (confirm(`Delete Artist:${btn.dataset.name}`)) {
+        fetch(`/artists/${btn.dataset.id}`, {
+          method: "Delete",
+        })
+          .then((res) => {
+            if (res.redirected) window.location.href = res.url;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
+  }
+</script>
+{% endblock %}

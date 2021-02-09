@@ -1,0 +1,103 @@
+
+/**
+ * @file
+ * Quickfix stylesheet file.
+ *
+ * Contains immediate fixes that should be revised later and added in the
+ * main.css.
+ */
+ /* Custome Style */
+ .seeking-container {
+     display: flex;
+     flex-flow: row nowrap;
+     justify-content: flex-start;
+     align-items: center;
+
+ }
+
+ .seeking-container input[type="checkbox"] {
+     width: 5%;
+     height: 30px;
+     margin: 5px;
+     border: none;
+     outline: none;
+     box-shadow: none;
+ }
+
+ .hidden {
+     display: none !important;
+ }
+
+ /* .editIcon{
+     color:black
+ }
+.editIcon:hover {
+    color: black
+} */
+
+.pointer {
+    cursor: pointer;
+}
+
+.items li{
+    max-width: 50vw;
+    min-width: 350px;
+    transition: all .5s ease-in-out;
+    margin-top: 10px;
+}
+
+.items li:hover{
+ box-shadow: 0 0 12px rgba(0, 0, 0, 0.18);
+  transform: scale(1.02);
+}
+.items li div{
+    /* background: red; */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: default;
+   
+}
+.items li div i{
+    padding: 15px;
+    margin: 5px;
+    font-size: 18px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+
+
+.items li div a.editIcon {
+    margin-left:auto;
+}
+.items li div a:first-of-type{
+  flex-grow: 1;
+}
+
+.items li a,
+.items li i{
+color:black
+}
+
+.items li a:hover,
+.items li i:hover,
+.items li div a:hover {
+    text-decoration: none;
+}
+
+.items li div i:hover,
+.items li div a i:hover {
+    transform: scale(1.5);
+   
+}
+
+.shows div div {
+    transition: all .5s ease-in-out;
+}
+
+.shows div>div:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.18);
+    transform: scale(1.02);
+}
