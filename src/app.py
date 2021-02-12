@@ -204,7 +204,7 @@ def edit_artist_submission(artist_id):
         editartist.website = request.form['website_link']
         editartist.image_link = request.form['image_link']
         editartist.facebook_link = request.form['facebook_link']
-        editartist.seeking_talent = seeking_venue
+        editartist.seeking_venue = seeking_venue
         editartist.seeking_description = request.form['seeking_description']
         db.session.commit()
     except:

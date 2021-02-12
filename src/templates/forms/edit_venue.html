@@ -40,7 +40,7 @@ block content %}
       <label for="genres">Genres</label>
       <small>Ctrl+Click to select multiple</small>
       {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by
-      commas', id='geners', autofocus = true) }}
+      commas', id='genres', autofocus = true) }}
     </div>
     <div class="form-group">
       <label for="website_link">website</label>
@@ -75,34 +75,35 @@ block content %}
   </form>
 </div>
 <script>
-  const checkBox = document.getElementById("seeking_talent");
-  const descriptionText = document.getElementById("seeking_description");
-  const stateSelect = document.getElementById("state");
-  const genersSelect = document.getElementById("genres");
-  stateSelect.value = "{{cityObj.state}}";
+    const checkBox = document.getElementById("seeking_talent");
+    const descriptionText = document.getElementById("seeking_description");
+    const stateSelect = document.getElementById("state");
+    const genersSelect = document.getElementById("genres");
+    stateSelect.value = "{{cityObj.state}}";
 
-  const selectedList=JSON.parse({{selectedGeners|tojson}})
-  const selectedMap={};
-  for(name of selectedList){
-    selectedMap[name]=true
-  }
-
-  for(opt of genersSelect.options){
-    if(selectedMap[opt.value]){
-      opt.selected=true
+    const selectedList=JSON.parse({{selectedGeners|tojson}})
+    const selectedMap={};
+    for(name of selectedList){
+      selectedMap[name]=true
     }
-  }
 
-  function toggleVisibilityOfDescriptionText() {
-    if (checkBox.checked) {
-      descriptionText.classList.remove("hidden");
-    } else {
-      descriptionText.classList.add("hidden");
-      descriptionText.value = "";
+  console.log(genersSelect)
+    for(opt of genersSelect.options){
+      if(selectedMap[opt.value]){
+        opt.selected=true
+      }
     }
-  }
-  toggleVisibilityOfDescriptionText();
 
-  checkBox.onchange = toggleVisibilityOfDescriptionText;
+    function toggleVisibilityOfDescriptionText() {
+      if (checkBox.checked) {
+        descriptionText.classList.remove("hidden");
+      } else {
+        descriptionText.classList.add("hidden");
+        descriptionText.value = "";
+      }
+    }
+    toggleVisibilityOfDescriptionText();
+
+    checkBox.onchange = toggleVisibilityOfDescriptionText;
 </script>
 {% endblock %}
